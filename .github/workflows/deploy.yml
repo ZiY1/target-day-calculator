@@ -31,9 +31,9 @@ jobs:
           fi
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          allow_empty_commit: true   # optional, avoids errors if no changes
-          keep_files: false
+          branch: gh-pages
+          folder: dist       # <-- Vite output folder
+          token: ${{ secrets.GITHUB_TOKEN }}
+          debug: true
