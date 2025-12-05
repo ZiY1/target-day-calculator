@@ -24,8 +24,16 @@ jobs:
       - name: Build project
         run: npm run build
 
+      - name: Add .gitkeep to dist (optional)
+        run: |
+          if [ ! -f dist/.gitkeep ]; then
+            touch dist/.gitkeep
+          fi
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+          allow_empty_commit: true   # optional, avoids errors if no changes
+          keep_files: false
